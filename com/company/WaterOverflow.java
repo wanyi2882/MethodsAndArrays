@@ -4,21 +4,24 @@ import java.util.Scanner;
 
 public class WaterOverflow {
     public static void main(String[] args) {
-        // Write code here
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
 
-        int capacity = 255;
-        int current = 0;
-        int n = Integer.parseInt(sc.nextLine());
+        int linesNumber = Integer.parseInt(scanner.nextLine());
+        int waterTankCapacity = 255;
+        int litresCounter = 0;
 
+        for (int i = 1; i <= linesNumber; i++) {
+            int waterLiters = Integer.parseInt(scanner.nextLine());
+            waterTankCapacity -= waterLiters;
 
-        for(int i = 0; i < n; i++){
-            int litres = Integer.parseInt(sc.nextLine());
-            current += litres;
-            if(current < capacity && i==0){
+            if (waterTankCapacity < 0) {
+                waterTankCapacity += waterLiters;
+                litresCounter -= waterLiters;
                 System.out.println("Insufficient capacity!");
             }
+
+            litresCounter += waterLiters;
         }
-        System.out.println(current);
+        System.out.println(litresCounter);
     }
 }
